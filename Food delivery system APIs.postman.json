@@ -1,0 +1,1196 @@
+{
+	"info": {
+		"_postman_id": "80a2fbe3-64f1-4d50-a515-24d5003635f1",
+		"name": "Food delivery system APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34421655"
+	},
+	"item": [
+		{
+			"name": "Authorization",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullname\": \"admin\",\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\": \"1111\",\r\n    \"address\": \"Tashkent Uzbekistan\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/auth/register",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullname\": \"admin\",\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"1111\",\r\n    \"address\": \"Tashkent Uzbekistan\",\r\n    \"code\": \"988627\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/auth/verify",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjRiMTVhLTUwZmUtNDkxMS04MTEzLTA4NDkyZjQ2ZTU5NCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MjMwOTc3NTAsImV4cCI6MTcyMzE4NDE1MH0.m_wtGDRCDTxsKoSO7k0tr18vM8CqMuRGwkqtCCr8bIE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"1111\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/auth/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"1111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/admin/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "make order (user)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/carts/order",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"carts",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show all carts (admin)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/carts",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update cart (user)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjRiMTVhLTUwZmUtNDkxMS04MTEzLTA4NDkyZjQ2ZTU5NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzEwNTM1MywiZXhwIjoxNzIzMTkxNzUzfQ.tEcGqSSQFUED7IIGq8Pgv4UQSLal2jW1lRRpEnjrSt0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"quantity\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/carts/7609fed9-ba2a-4657-844a-a80b03cd01ef",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"carts",
+								"7609fed9-ba2a-4657-844a-a80b03cd01ef"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove cart (user)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjRiMTVhLTUwZmUtNDkxMS04MTEzLTA4NDkyZjQ2ZTU5NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzEwNTM1MywiZXhwIjoxNzIzMTkxNzUzfQ.tEcGqSSQFUED7IIGq8Pgv4UQSLal2jW1lRRpEnjrSt0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/carts/7609fed9-ba2a-4657-844a-a80b03cd01ef",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"carts",
+								"7609fed9-ba2a-4657-844a-a80b03cd01ef"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Food-category",
+			"item": [
+				{
+					"name": "create category (admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjRiMTVhLTUwZmUtNDkxMS04MTEzLTA4NDkyZjQ2ZTU5NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzA5NzkxOCwiZXhwIjoxNzIzMTg0MzE4fQ.1fY30sNLurTENgnLJsKjdfb0RmZALlHLLvg2asYb4uo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ichimliklar\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/categoryFood/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"categoryFood",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/categoryFood/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"categoryFood",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show foodCategory By Id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "update category (admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjhlOTMzLWVmZWEtNDI0Zi05ZWI4LWFmM2U0ZTY1OGM2ZCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzAwOTY0MywiZXhwIjoxNzIzMDk2MDQzfQ.JvKpYL7XVKVRpFmp55zvoRxtosXKqbc9HzQWAsQXmQ0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Parxezz taomlar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/categoryFood/ba43db64-e17b-49a6-84cc-67cdcecb8511",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"categoryFood",
+								"ba43db64-e17b-49a6-84cc-67cdcecb8511"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove category (admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjRiMTVhLTUwZmUtNDkxMS04MTEzLTA4NDkyZjQ2ZTU5NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzA5NzkxOCwiZXhwIjoxNzIzMTg0MzE4fQ.1fY30sNLurTENgnLJsKjdfb0RmZALlHLLvg2asYb4uo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/categoryFood/903dce55-cf64-492b-8605-1b9bb3938071",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"categoryFood",
+								"903dce55-cf64-492b-8605-1b9bb3938071"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Restaurant-category",
+			"item": [
+				{
+					"name": "create category (admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjRiMTVhLTUwZmUtNDkxMS04MTEzLTA4NDkyZjQ2ZTU5NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzA5NzkxOCwiZXhwIjoxNzIzMTg0MzE4fQ.1fY30sNLurTENgnLJsKjdfb0RmZALlHLLvg2asYb4uo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pitsalar\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/categoryRes/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"categoryRes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show Res",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/categoryRes/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"categoryRes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show categoryRes by id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "update Res (admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjhlOTMzLWVmZWEtNDI0Zi05ZWI4LWFmM2U0ZTY1OGM2ZCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzAwOTY0MywiZXhwIjoxNzIzMDk2MDQzfQ.JvKpYL7XVKVRpFmp55zvoRxtosXKqbc9HzQWAsQXmQ0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Fast-Food\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/categoryRes/66fa7e32-cadb-4339-ae7f-f106311d7274",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"categoryRes",
+								"66fa7e32-cadb-4339-ae7f-f106311d7274"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove Res (admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjhlOTMzLWVmZWEtNDI0Zi05ZWI4LWFmM2U0ZTY1OGM2ZCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzAwOTY0MywiZXhwIjoxNzIzMDk2MDQzfQ.JvKpYL7XVKVRpFmp55zvoRxtosXKqbc9HzQWAsQXmQ0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/categoryRes/66fa7e32-cadb-4339-ae7f-f106311d7274",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"categoryRes",
+								"66fa7e32-cadb-4339-ae7f-f106311d7274"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Food",
+			"item": [
+				{
+					"name": "create food (admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjRiMTVhLTUwZmUtNDkxMS04MTEzLTA4NDkyZjQ2ZTU5NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzA5NzkxOCwiZXhwIjoxNzIzMTg0MzE4fQ.1fY30sNLurTENgnLJsKjdfb0RmZALlHLLvg2asYb4uo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Lavash Max",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Mol go'shtli",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "37000",
+									"type": "text"
+								},
+								{
+									"key": "restaurantId",
+									"value": "ee5bd15e-dd48-48ad-ba09-b7143cbfad26",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "f677b940-35a3-43ac-9b9f-b2996a2c7e3c",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/jasur/Desktop/fds images/foods/download (1).jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/foods",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"foods"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show foods",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/foods",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"foods"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/foods/55595958-b543-47bd-9684-8c7b4ed2889b",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"foods",
+								"55595958-b543-47bd-9684-8c7b4ed2889b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update food (admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjhlOTMzLWVmZWEtNDI0Zi05ZWI4LWFmM2U0ZTY1OGM2ZCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzAzMDQxNCwiZXhwIjoxNzIzMTE2ODE0fQ.Bgwkh88lFvFeEMHuSK1ND-7wnBJZzkiWg8tzo5sUi54",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Torgamchi osh",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/foods/55595958-b543-47bd-9684-8c7b4ed2889b",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"foods",
+								"55595958-b543-47bd-9684-8c7b4ed2889b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove food (admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjhlOTMzLWVmZWEtNDI0Zi05ZWI4LWFmM2U0ZTY1OGM2ZCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzAzMDQxNCwiZXhwIjoxNzIzMTE2ODE0fQ.Bgwkh88lFvFeEMHuSK1ND-7wnBJZzkiWg8tzo5sUi54",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/foods/16275202-6579-420f-b32c-840a5b0c3d5a",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"foods",
+								"16275202-6579-420f-b32c-840a5b0c3d5a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addToCart (user)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNiNjUyNmY1LThlMDUtNDA4YS05NTFmLTBkYjhhZmIwZjZmNSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MjMxODE1MTcsImV4cCI6MTcyMzI2NzkxN30.0qyKAQHkTOnH4amacxuElIxhPSBhMq8jpkBBLmTWAps",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/foods/87df7beb-a3b6-4c4d-b5df-f8d6e8d9646e/add-to-cart",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"foods",
+								"87df7beb-a3b6-4c4d-b5df-f8d6e8d9646e",
+								"add-to-cart"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "show orders (own order)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjRiMTVhLTUwZmUtNDkxMS04MTEzLTA4NDkyZjQ2ZTU5NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzEwNTM1MywiZXhwIjoxNzIzMTkxNzUzfQ.tEcGqSSQFUED7IIGq8Pgv4UQSLal2jW1lRRpEnjrSt0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/orders",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show all orders (admin)",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "update order status (admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjRiMTVhLTUwZmUtNDkxMS04MTEzLTA4NDkyZjQ2ZTU5NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzA5NzkxOCwiZXhwIjoxNzIzMTg0MzE4fQ.1fY30sNLurTENgnLJsKjdfb0RmZALlHLLvg2asYb4uo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"SHIPPING\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/orders/2309be1f-cf63-4369-95d6-0829db751e52",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"2309be1f-cf63-4369-95d6-0829db751e52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove order (admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/orders/242092d4-dfbb-47c5-baab-6a3c608362ed",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"242092d4-dfbb-47c5-baab-6a3c608362ed"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Restaurant",
+			"item": [
+				{
+					"name": "create restaurant (admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjRiMTVhLTUwZmUtNDkxMS04MTEzLTA4NDkyZjQ2ZTU5NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzA5NzkxOCwiZXhwIjoxNzIzMTg0MzE4fQ.1fY30sNLurTENgnLJsKjdfb0RmZALlHLLvg2asYb4uo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "MaxWay",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Shayxontoxur tumani  5-uy",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "6222b7d7-9e20-465e-9f49-1f623d7c6e3b",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/jasur/Desktop/fds images/restaurants/download (1).jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/restaurants/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"restaurants",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show restaurants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/restaurants/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"restaurants",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show restaurant by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/restaurants/55dcc19e-e068-4d3d-94f2-a8c3d8e8c253",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"restaurants",
+								"55dcc19e-e068-4d3d-94f2-a8c3d8e8c253"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update restaurant (admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjhlOTMzLWVmZWEtNDI0Zi05ZWI4LWFmM2U0ZTY1OGM2ZCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzAyMjg0MCwiZXhwIjoxNzIzMTA5MjQwfQ.Iz08DWLxqbsJ1vDSuenQBQ1ZoNoLJ5gwnXtPiMK23J0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Kamolon non markazi",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/restaurants/dc2b0c70-c89d-4535-b359-2601397a7383",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"restaurants",
+								"dc2b0c70-c89d-4535-b359-2601397a7383"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove restaurant (admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjhlOTMzLWVmZWEtNDI0Zi05ZWI4LWFmM2U0ZTY1OGM2ZCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzAyMjg0MCwiZXhwIjoxNzIzMTA5MjQwfQ.Iz08DWLxqbsJ1vDSuenQBQ1ZoNoLJ5gwnXtPiMK23J0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/restaurants/dc2b0c70-c89d-4535-b359-2601397a7383",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"restaurants",
+								"dc2b0c70-c89d-4535-b359-2601397a7383"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "add review (user)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3ZjM0MGM3LTcyYTEtNDEzZi04OTE5LTc4OTBmMjk0YTRkZSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MjMxMzExNzEsImV4cCI6MTcyMzIxNzU3MX0.Oj4MzyuV5K9Kfy1OIL77fbMsm3oW8PPz4Fw0RuBwg_0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\": 2,\r\n    \"comment\": \"JANE REVIEW\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/restaurants/55dcc19e-e068-4d3d-94f2-a8c3d8e8c253/add-review",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"restaurants",
+								"55dcc19e-e068-4d3d-94f2-a8c3d8e8c253",
+								"add-review"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove review (user)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3ZjM0MGM3LTcyYTEtNDEzZi04OTE5LTc4OTBmMjk0YTRkZSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MjMxMzExNzEsImV4cCI6MTcyMzIxNzU3MX0.Oj4MzyuV5K9Kfy1OIL77fbMsm3oW8PPz4Fw0RuBwg_0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/restaurants/ba0466f1-ce89-4bfc-b70d-0f6d9d5dc6c3/remove-review/60bb578f-0105-4c12-b0cc-4aea9d1e2797",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"restaurants",
+								"ba0466f1-ce89-4bfc-b70d-0f6d9d5dc6c3",
+								"remove-review",
+								"60bb578f-0105-4c12-b0cc-4aea9d1e2797"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update review (user)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3ZjM0MGM3LTcyYTEtNDEzZi04OTE5LTc4OTBmMjk0YTRkZSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MjMxMzExNzEsImV4cCI6MTcyMzIxNzU3MX0.Oj4MzyuV5K9Kfy1OIL77fbMsm3oW8PPz4Fw0RuBwg_0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\":4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/restaurants/55dcc19e-e068-4d3d-94f2-a8c3d8e8c253/update-review/60bb578f-0105-4c12-b0cc-4aea9d1e2797",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"restaurants",
+								"55dcc19e-e068-4d3d-94f2-a8c3d8e8c253",
+								"update-review",
+								"60bb578f-0105-4c12-b0cc-4aea9d1e2797"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Search",
+			"item": [
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "show profile user (user)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjhlOTMzLWVmZWEtNDI0Zi05ZWI4LWFmM2U0ZTY1OGM2ZCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzAwNzY2NiwiZXhwIjoxNzIzMDk0MDY2fQ.iCZCSTwugePnnqcyrrSY2NleZR7xoKYDlYhYj243nz0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/users/c0c378ec-be9b-4d50-80c8-5e52215da6ca",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"c0c378ec-be9b-4d50-80c8-5e52215da6ca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "showAll users (admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjhlOTMzLWVmZWEtNDI0Zi05ZWI4LWFmM2U0ZTY1OGM2ZCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzAwNDc0NCwiZXhwIjoxNzIzMDkxMTQ0fQ.AOTijmkBVXRchPEFq4ZDbJv3fYL2DqFZPaFRhFtYq1Q",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/users/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user  profile(admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjhlOTMzLWVmZWEtNDI0Zi05ZWI4LWFmM2U0ZTY1OGM2ZCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMzAwNzY2NiwiZXhwIjoxNzIzMDk0MDY2fQ.iCZCSTwugePnnqcyrrSY2NleZR7xoKYDlYhYj243nz0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profileImage",
+									"type": "file",
+									"src": "/C:/Users/jasur/Desktop/Screenshot 2024-08-06 144031.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/admin/users/c0c378ec-be9b-4d50-80c8-5e52215da6ca",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"users",
+								"c0c378ec-be9b-4d50-80c8-5e52215da6ca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user profile (user)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMwYzM3OGVjLWJlOWItNGQ1MC04MGM4LTVlNTIyMTVkYTZjYSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MjMwMDY5NTcsImV4cCI6MTcyMzA5MzM1N30.htd8CBOlwU7P_hRLxv_584lxcPRARlANpaFSmM9kAMg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profileImage",
+									"type": "file",
+									"src": "/C:/Users/jasur/Desktop/Screenshot 2024-08-06 145058.png"
+								},
+								{
+									"key": "fullname",
+									"value": "admin adminov",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/users/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user (admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/users/22542008-6685-47f6-b2f3-215123642a77",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"22542008-6685-47f6-b2f3-215123642a77"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

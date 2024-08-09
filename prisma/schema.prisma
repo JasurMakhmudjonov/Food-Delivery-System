@@ -1,0 +1,183 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id           String   @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  fullname     String   @map("fullname")
+  email        String   @unique @map("email")
+  password     String   @map("password")
+  profileImage String?  @map("profile_image")
+  address      String   @map("address")
+  isAdmin      Boolean  @default(false) @map("is_admin")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  orders      Orders[]
+  reviews     Reviews[]
+  cartItems   Carts[]
+  restaurants Restaurants[]
+
+  @@id([id])
+  @@map("users")
+}
+
+model CategoryRestaurants {
+  id        String   @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String   @map("name")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  restaurants Restaurants[]
+
+  @@id([id])
+  @@unique([name])
+  @@map("category_restaurants")
+}
+
+model CategoryFoods {
+  id        String   @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String   @map("name")
+  foods     Foods[]
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@id([id])
+  @@unique([name])
+  @@map("category_foods")
+}
+
+model Restaurants {
+  id         String   @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name       String   @unique @map("name")
+  address    String   @map("address")
+  rating     Float?   @default(5) @map("rating")
+  image      String   @map("image")
+  categoryId String   @map("category_id") @db.Uuid
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  users   Users[]
+  foods   Foods[]
+  reviews Reviews[]
+
+  category CategoryRestaurants @relation(fields: [categoryId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([id])
+  @@unique([name, address], name: "name_address")
+  @@map("restaurants")
+}
+
+model Foods {
+  id           String   @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name         String   @map("name")
+  description  String   @map("description")
+  price        Float    @map("price")
+  image        String   @map("image")
+  restaurantId String   @map("restaurant_id") @db.Uuid
+  categoryId   String   @map("category_id") @db.Uuid
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  cartItems    Carts[]
+  orderedItems OrderedItems[]
+
+  restaurant Restaurants   @relation(fields: [restaurantId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  category   CategoryFoods @relation(fields: [categoryId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([id])
+  @@unique([name, restaurantId], name: "name_restaurant_id")
+  @@map("foods")
+}
+
+enum OrderStatus {
+  PREPARING
+  SHIPPING
+  DELIVERED
+  CANCELED
+}
+
+model Orders {
+  id         String      @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  status     OrderStatus @map("status")
+  totalPrice Float       @map("total_amount")
+  userId     String      @map("user_id") @db.Uuid
+  createdAt  DateTime    @default(now()) @map("created_at")
+  updatedAt  DateTime    @updatedAt @map("updated_at")
+
+  user         Users          @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  orderedItems OrderedItems[]
+
+  @@id([id])
+  @@map("orders")
+}
+
+model OrderedItems {
+  id        String   @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  orderId   String   @map("order_id") @db.Uuid
+  foodId    String   @map("food_id") @db.Uuid
+  quantity  Int      @map("quantity")
+  unitPrice Float    @map("unit_price")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  order Orders @relation(fields: [orderId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  food  Foods  @relation(fields: [foodId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([id])
+  @@map("ordered_items")
+}
+
+model Carts {
+  id         String   @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId     String   @map("user_id") @db.Uuid
+  foodId     String   @map("food_id") @db.Uuid
+  quantity   Int      @map("quantity")
+  totalPrice Int      @map("total_price")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  user Users @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  food Foods @relation(fields: [foodId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([id])
+  @@unique([userId, foodId])
+  @@map("cart")
+}
+
+model Reviews {
+  id           String   @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  rating       Int      @map("rating")
+  comment      String   @map("comment")
+  userId       String   @map("user_id") @db.Uuid
+  restaurantId String   @map("restaurant_id") @db.Uuid
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  user       Users       @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  restaurant Restaurants @relation(fields: [restaurantId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([id])
+  @@unique([userId, restaurantId])
+  @@map("reviews")
+}
+
+model Otp {
+  id        String   @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  otp       String   @map("otp")
+  fullname  String   @map("fullname")
+  email     String   @map("email")
+  password  String   @map("password")
+  address   String   @map("address")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@id([id])
+  @@map("otp")
+}
+
+
