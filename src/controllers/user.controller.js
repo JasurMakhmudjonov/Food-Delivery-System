@@ -26,7 +26,7 @@ const showAll = async (req, res, next) => {
       },
     });
 
-    res.status(200).json({ allUsers });
+    res.status(200).json({ data:allUsers });
   } catch (error) {
     next(error);
   }
@@ -66,7 +66,7 @@ const showById = async (req, res, next) => {
       },
     });
 
-    res.status(200).json({ user });
+    res.status(200).json({ data:user });
   } catch (error) {
     next(error);
   }
@@ -108,7 +108,7 @@ const updateByUser = async (req, res, next) => {
         profileImage: imageName,
       },
     });
-    res.status(200).json({ message: "User updated successfully", user });
+    res.status(200).json({ message: "User updated successfully", data:user });
   } catch (error) {
     console.error("Error updating user:", error);
     next(error);
@@ -149,7 +149,7 @@ const updateByAdmin = async (req, res, next) => {
         address,
       },
     });
-    res.status(200).json({ message: "User updated successfully", user });
+    res.status(200).json({ message: "User updated successfully", data:user });
   } catch (error) {
     next(error);
   }

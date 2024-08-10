@@ -42,7 +42,7 @@ const createOrder = async (req, res, next) => {
       where: { userId },
     });
 
-    res.status(201).json({ message: "Order placed successfully", order });
+    res.status(201).json({ message: "Order placed successfully", data:order });
   } catch (error) {
     console.error("Error placing order:", error);
     next(error);
@@ -89,7 +89,7 @@ const showOrder = async (req, res, next) => {
       return res.status(404).json({ message: "Order not found for this user" });
     }
 
-    res.status(200).json({ message: "Order retrieved successfully", order });
+    res.status(200).json({ message: "Order retrieved successfully", data:order });
   } catch (error) {
     console.error("Error fetching order:", error);
     next(error);
@@ -130,7 +130,7 @@ const showAllOrder = async (req, res, next) => {
     });
     res
       .status(200)
-      .json({ message: "All orders retrieved successfully", allOrders });
+      .json({ message: "All orders retrieved successfully", data:allOrders });
   } catch (error) {
     next(error);
   }
@@ -208,7 +208,7 @@ const updateOrder = async (req, res, next) => {
 
     res
       .status(200)
-      .json({ message: "Order status updated successfully", updatedOrder });
+      .json({ message: "Order status updated successfully", data:updatedOrder });
   } catch (error) {
     console.error("Error updating order status:", error);
     next(error);
@@ -250,7 +250,7 @@ const cancelOrder = async (req, res, next) => {
 
     res
       .status(200)
-      .json({ message: "Order canceled successfully", canceledOrder });
+      .json({ message: "Order canceled successfully", data:canceledOrder });
   } catch (error) {
     console.error("Error canceling order:", error);
     next(error);

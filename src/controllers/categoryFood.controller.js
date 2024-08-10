@@ -22,7 +22,7 @@ const createCategory = async (req, res, next) => {
     });
     res
       .status(201)
-      .json({ message: "Category created successfully", category });
+      .json({ message: "Category created successfully", data:category });
   } catch (error) {
     next(error);
   }
@@ -31,7 +31,7 @@ const createCategory = async (req, res, next) => {
 const showCategory = async (req, res, next) => {
   try {
     const allCategories = await prisma.categoryFoods.findMany();
-    res.status(200).json({ message: "All categories", allCategories });
+    res.status(200).json({ message: "All categories", data:allCategories });
   } catch (error) {
     next(error);
   }
@@ -62,7 +62,7 @@ const showCategoryById = async (req, res, next) => {
       return res.status(404).json({ message: "Category not found" });
     }
 
-    res.status(200).json({ message: "Food Category", categoryFood });
+    res.status(200).json({ message: "Food Category", data:categoryFood });
   } catch (error) {
     next(error);
   }
@@ -93,7 +93,7 @@ const updateCategory = async (req, res, next) => {
 
     res
       .status(200)
-      .json({ message: "Category updated successfully", category });
+      .json({ message: "Category updated successfully", data:category });
   } catch (error) {
     next(error);
   }

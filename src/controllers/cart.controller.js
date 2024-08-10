@@ -89,7 +89,7 @@ const showCarts = async (req, res, next) => {
 
     res
       .status(200)
-      .json({ message: "Carts retrieved successfully", carts, totalPrice });
+      .json({ message: "Carts retrieved successfully", data:carts, totalPrice });
   } catch (error) {
     next(error);
   }
@@ -134,7 +134,7 @@ const updateCart = async (req, res, next) => {
 
     res
       .status(200)
-      .json({ message: "Cart updated successfully", updatedCartItem });
+      .json({ message: "Cart updated successfully", data:updatedCartItem });
   } catch (error) {
     console.error("Error updating cart:", error);
     next(error);
@@ -202,7 +202,7 @@ const createOrder = async (req, res, next) => {
       where: { userId },
     });
 
-    res.status(201).json({ message: "Order placed successfully", order });
+    res.status(201).json({ message: "Order placed successfully", data:order });
   } catch (error) {
     console.error("Error placing order:", error);
     next(error);

@@ -56,7 +56,7 @@ const search = async (req, res, next) => {
       return res.status(400).json({ message: "Invalid type provided" });
     }
 
-    res.status(200).json({ message: "Search results", results });
+    res.status(200).json({ message: "Search results", data:results });
   } catch (error) {
     console.error("Error during search:", error);
     next(error);

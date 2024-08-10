@@ -73,7 +73,7 @@ const createFood = async (req, res, next) => {
       },
     });
 
-    res.status(201).json({ message: "Food created successfully", food });
+    res.status(201).json({ message: "Food created successfully", data:food });
   } catch (error) {
     console.error("Error creating food:", error);
     next(error);
@@ -105,7 +105,7 @@ const showAllFood = async (req, res, next) => {
         },
       },
     });
-    res.status(200).json({ message: "All foods", allFood });
+    res.status(200).json({ message: "All foods", data:allFood });
   } catch (error) {
     next(error);
   }
@@ -145,7 +145,7 @@ const showFoodById = async (req, res, next) => {
       },
     });
 
-    res.status(200).json({ message: "Food", food });
+    res.status(200).json({ message: "Food", data:food });
   } catch (error) {
     console.log("error", error);
 
@@ -223,7 +223,7 @@ const updateFood = async (req, res, next) => {
         },
       },
     });
-    res.status(200).json({ message: "Food updated successfully", food });
+    res.status(200).json({ message: "Food updated successfully", data:food });
   } catch (error) {
     next(error);
   }
@@ -282,7 +282,7 @@ const addToCart = async (req, res, next) => {
       },
     });
 
-    res.status(201).json({ message: "Food added to cart", cartItem });
+    res.status(201).json({ message: "Food added to cart", data:cartItem });
   } catch (error) {
     console.error("Error adding to cart:", error);
     next(error);

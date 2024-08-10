@@ -56,7 +56,7 @@ const createRestaurant = async (req, res, next) => {
 
     res
       .status(201)
-      .json({ message: "Restaurant created successfully", restaurant });
+      .json({ message: "Restaurant created successfully", data: restaurant });
   } catch (error) {
     next(error);
   }
@@ -133,7 +133,7 @@ const showAllRestaurant = async (req, res, next) => {
       total: totalRestaurants,
       page: parseInt(page),
       limit: parseInt(limit),
-      restaurants,
+      data: restaurants,
     });
   } catch (error) {
     next(error);
@@ -178,7 +178,7 @@ const showRestaurantById = async (req, res, next) => {
         },
       },
     });
-    res.status(200).json({ restaurant });
+    res.status(200).json({ data: restaurant });
   } catch (error) {
     next(error);
   }
@@ -231,7 +231,7 @@ const updateRestaurant = async (req, res, next) => {
 
     res
       .status(200)
-      .json({ message: "Restaurant updated successfully", updatedRestaurant });
+      .json({ message: "Restaurant updated successfully", data:updatedRestaurant });
   } catch (error) {
     next(error);
   }
@@ -338,7 +338,7 @@ const createReview = async (req, res, next) => {
       data: { rating: parseFloat(averageRating.toFixed(1)) },
     });
 
-    res.status(201).json({ message: "Review created successfully", review });
+    res.status(201).json({ message: "Review created successfully", data:review });
   } catch (error) {
     console.error("Error creating review:", error);
     next(error);
@@ -429,7 +429,7 @@ const updateReview = async (req, res, next) => {
 
     res
       .status(200)
-      .json({ message: "Review updated successfully", updatedReview });
+      .json({ message: "Review updated successfully", data:updatedReview });
   } catch (error) {
     console.error("Error updating review:", error);
     next(error);
@@ -469,7 +469,7 @@ const removeReview = async (req, res, next) => {
     const totalRating =
       reviews.reduce((total, review) => total + review.rating, 0) + 5;
     const averageRating =
-      reviews.length > 0 ? totalRating / (reviews.length + 1) : 5; 
+      reviews.length > 0 ? totalRating / (reviews.length + 1) : 5;
     await prisma.restaurants.update({
       where: { id: review.restaurantId },
       data: { rating: parseFloat(averageRating.toFixed(1)) },
