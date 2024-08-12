@@ -6,6 +6,7 @@ const cors = require('cors');
 
 const modules = (app, express) => {
   app.use(express.json());
+  app.use(express.static(`${process.cwd()}/uploads`))
   app.use(cors({
     origin: "*"
   }))

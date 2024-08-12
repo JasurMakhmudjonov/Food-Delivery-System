@@ -79,7 +79,6 @@ const updateByUser = async (req, res, next) => {
       return res.status(403).json({ message: "Unauthorized" });
     }
     const { fullname, password, address } = req.body;
-
     const schema = Joi.object({
       fullname: Joi.string(),
       password: Joi.string().min(4),
